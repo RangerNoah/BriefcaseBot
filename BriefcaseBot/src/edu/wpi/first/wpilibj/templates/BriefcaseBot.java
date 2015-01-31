@@ -8,7 +8,7 @@
 package edu.wpi.first.wpilibj.templates;
 
 
-import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -18,11 +18,23 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  * directory.
  */
 public class BriefcaseBot extends IterativeRobot {
+    private Joystick _driveController;
+    
+    private Talon frontLeftMotor;
+    private Talon frontRightMotor;
+    private Talon backLeftMotor;
+    private Talon backRightMotor;
+            
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
+        
+        frontLeftMotor = new Talon(Addresses.frontLeftMotor);
+        frontRightMotor = new Talon(Addresses.frontRightMotor);
+        backLeftMotor = new Talon(Addresses.backLeftMotor);
+        backRightMotor = new Talon(Addresses.backRightMotor);
 
     }
 
