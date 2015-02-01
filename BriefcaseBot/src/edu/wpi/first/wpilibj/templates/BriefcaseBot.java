@@ -18,8 +18,9 @@ import edu.wpi.first.wpilibj.*;
  * directory.
  */
 public class BriefcaseBot extends IterativeRobot {
-    private Joystick _driveController;
-    
+    private Joystick leftJoystick;
+    private Joystick rightJoystick;        
+            
     private Talon frontLeftMotor;
     private Talon frontRightMotor;
     private Talon backLeftMotor;
@@ -31,10 +32,10 @@ public class BriefcaseBot extends IterativeRobot {
      */
     public void robotInit() {
         
-        frontLeftMotor = new Talon(Addresses.frontLeftMotor);
-        frontRightMotor = new Talon(Addresses.frontRightMotor);
-        backLeftMotor = new Talon(Addresses.backLeftMotor);
-        backRightMotor = new Talon(Addresses.backRightMotor);
+        frontLeftMotor = new Talon(Addresses.FRONT_LEFT_MOTOR);
+        frontRightMotor = new Talon(Addresses.FRONT_RIGHT_MOTOR);
+        backLeftMotor = new Talon(Addresses.BACK_LEFT_MOTOR);
+        backRightMotor = new Talon(Addresses.BACK_RIGHT_MOTOR);
 
     }
 
@@ -49,7 +50,7 @@ public class BriefcaseBot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
+        drive();
     }
     
     /**
@@ -58,5 +59,17 @@ public class BriefcaseBot extends IterativeRobot {
     public void testPeriodic() {
     
     }
+    public void drive(){
+        setLeftMotors(leftJoystick.getY());
+        setRightMotors(rightJoystick.getY());
+    }
     
+    private void setLeftMotors(double speed){
+        frontLeftMotor.set(speed);
+        backLeftMotor.set(speed);
+    }
+    private void setRightMotors (double speed){
+        frontRightMotor.set(speed);
+        backRightMotor.set(speed);
+    }      
 }
