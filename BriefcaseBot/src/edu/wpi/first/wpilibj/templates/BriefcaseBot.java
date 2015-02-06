@@ -18,8 +18,7 @@ import edu.wpi.first.wpilibj.*;
  * directory.
  */
 public class BriefcaseBot extends IterativeRobot {
-    private Joystick leftJoystick;
-    private Joystick rightJoystick;        
+    private Joystick leftJoystick;        
             
     private Talon frontLeftMotor;
     private Talon frontRightMotor;
@@ -31,6 +30,8 @@ public class BriefcaseBot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+        
+        leftJoystick = new Joystick(Addresses.LEFT_JOYSTICK);
         
         frontLeftMotor = new Talon(Addresses.FRONT_LEFT_MOTOR);
         frontRightMotor = new Talon(Addresses.FRONT_RIGHT_MOTOR);
@@ -61,7 +62,7 @@ public class BriefcaseBot extends IterativeRobot {
     }
     public void drive(){
         setLeftMotors(leftJoystick.getY());
-        setRightMotors(rightJoystick.getY());
+        setRightMotors(leftJoystick.getThrottle());
     }
     
     private void setLeftMotors(double speed){
@@ -71,5 +72,9 @@ public class BriefcaseBot extends IterativeRobot {
     private void setRightMotors (double speed){
         frontRightMotor.set(speed);
         backRightMotor.set(speed);
-    }      
+    }   
+    
+    public void disabledInit() {
+        
+    }
 }
